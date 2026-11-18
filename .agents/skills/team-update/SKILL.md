@@ -1,14 +1,14 @@
 ---
 name: team-update
-description: Zaktualizuj wiedzę po badaniu, eksperymencie lub decyzji zespołu i otwórz Draft PR na GitHubie. Obsłuż także materiał przekazany przez team-share.
+description: Update team knowledge, setup or operating rules and deliver the change as a GitHub Draft PR, including contributions from team-share.
 ---
-# Zaktualizuj wiedzę
+# Update shared knowledge
 
-Wynikiem jest gałąź w repo zespołu i rzeczywisty Draft PR na GitHubie. Przy zleceniu zmiany doprowadź do tego wyniku bez osobnego pytania o push lub utworzenie PR-a. Wyraźne ograniczenie użytkownika do planu, podglądu albo pracy lokalnej ma pierwszeństwo.
+The result is a team branch and a real GitHub Draft PR. A request to make a change includes delivering that result without a separate push or PR confirmation. An explicit request for a plan, preview or local-only work takes precedence.
 
-1. Przeczytaj wejście i dotknięte strony z [potwierdzonego SHA](../../../8-System/git-read.md). Dla prywatnego materiału, także z `team-share`, zastosuj [zasady awansowania](references/awansowanie.md); uwzględnij już udzieloną akceptację dokładnego zakresu.
-2. Pracuj na osobnej gałęzi `codex/` repo zespołu od tego SHA; przy cudzych zmianach użyj osobnego worktree. Zaktualizuj strony, źródła, indeksy i powiązania według [kontraktu strony](../../../6-Templates/README.md). Zapisuj decyzje rzeczywiście podjęte przez ludzi. Uruchom `ruby scripts/check.rb`.
-3. Przygotuj diff, uzasadnienie i ograniczenia. Wskaż [właściciela lub zastępcę](../../../8-System/owners.md) innego niż autor; brak przydziału zaznacz w PR-ze dla opiekuna. Dla prywatnego wejścia uzyskaj brakującą akceptację przygotowanego zakresu przed pushem. Nie zapisuj patcha ani szkicu PR-a w prywatnym `9-Outputs/`.
-4. Commituj wyłącznie tę zmianę, wypchnij gałąź i utwórz Draft PR do domyślnej gałęzi zweryfikowanego repo według [szablonu](../../../.github/PULL_REQUEST_TEMPLATE.md). Przy kontynuacji zaktualizuj istniejący PR tej gałęzi. Odczytaj z GitHuba i podaj URL, stan Draft oraz wynik kontroli; lokalny diff nie jest PR-em. Przy braku dostępu lub błędzie podaj konkretną przeszkodę i zachowany stan gałęzi, zamiast ogłaszać zakończenie.
+1. Read the input and affected pages at a [verified SHA](../../../docs/git-read.md). For private input, including `team-share`, apply [private sharing](references/private-sharing.md), honoring approval already given for that exact scope.
+2. Use a separate `codex/` team branch based on that SHA; use a worktree if unrelated edits are present. Continue an existing task branch and PR when applicable. Follow the [page contract](../../../05-Templates/README.md), update affected sources and indexes, and use the team's `working_language`. Record decisions people actually made. Run `ruby scripts/check.rb`.
+3. Prepare the diff, rationale and limitations. Identify an [owner or backup](../../../01-Team/owners.md) other than the author; flag missing assignment for the steward in the PR. Obtain any missing disclosure approval for private input before pushing. Do not store team patches or PR drafts in the private brain.
+4. Commit only this change, push the branch and create a Draft PR to the verified repository's default branch using the [PR template](../../../.github/PULL_REQUEST_TEMPLATE.md). Update an existing PR for this task instead of duplicating it. Read back and report its URL, Draft state and checks. If access or publication fails, report the blocker and preserved branch state; a local diff is not a PR. If nothing changed, report that without creating an empty PR.
 
-Utworzenie Draft PR-a nie oznacza przyjęcia wiedzy. Nie oznaczaj go jako gotowego do review ani nie scalaj bez zlecenia; obowiązuje [obieg review](../../../docs/uruchomienie-github.md).
+A Draft PR is a proposal, not accepted knowledge. Do not mark it ready or merge without a request; follow the [review process](../../../docs/github-setup.md).

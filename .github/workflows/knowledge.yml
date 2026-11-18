@@ -1,4 +1,4 @@
-name: Kontrola wiedzy
+name: Knowledge checks
 on:
   pull_request:
 permissions:
@@ -12,3 +12,4 @@ jobs:
         with:
           persist-credentials: false
       - run: ruby scripts/check.rb
+      - run: ruby scripts/check_test.rb

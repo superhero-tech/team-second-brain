@@ -1,14 +1,17 @@
-# Przykład. Odkomentuj reguły po zastąpieniu nazw prawdziwymi loginami z dostępem write.
-# Druga osoba jest zastępcą. Ostatni pasujący wzorzec obowiązuje dla danej ścieżki.
-# *                    @opiekun @zastepca-opiekuna
-# /3-Projects/          @wlasciciel-produktu @zastepca-produktu
-# /4-Knowledge/         @wlasciciel-produktu @zastepca-produktu
-# /4-Knowledge/domain/  @wlasciciel-domeny @zastepca-domeny
-# /4-Knowledge/customers/ @wlasciciel-badan @zastepca-badan
-# /4-Knowledge/practices/ @wlasciciel-badan @zastepca-badan
-# /5-Raw/              @opiekun @zastepca-opiekuna
-# /7-Skills/           @opiekun @zastepca-opiekuna
-# /.agents/skills/     @opiekun @zastepca-opiekuna
-# /.claude/skills/     @opiekun @zastepca-opiekuna
-# /8-System/           @opiekun @zastepca-opiekuna
-# /.github/            @opiekun @zastepca-opiekuna
+# Example only. Replace placeholders with real logins that have write access,
+# then uncomment the relevant rules. The second person provides backup review.
+# The last matching pattern takes precedence. This file grants no permissions.
+# *                        @steward @backup
+# /01-Team/                @steward @backup
+# /02-Knowledge/           @product-owner @product-backup
+# /02-Knowledge/domain/    @domain-owner @domain-backup
+# /02-Knowledge/customers/ @research-owner @research-backup
+# /02-Knowledge/practices/ @research-owner @research-backup
+# /03-Projects/            @product-owner @product-backup
+# /04-Sources/             @steward @backup
+# /05-Templates/           @steward @backup
+# /.agents/skills/         @steward @backup
+# /.claude/skills/         @steward @backup
+# /docs/                   @steward @backup
+# /scripts/                @steward @backup
+# /.github/                @steward @backup

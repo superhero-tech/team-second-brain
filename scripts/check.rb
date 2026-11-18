@@ -19,11 +19,14 @@ class KnowledgeCheck
   end
 
   def run
-    owners = ROOT / '8-System/owners.md'
+    owners = ROOT / '01-Team/owners.md'
     validate_owners(owners)
+    profile = ROOT / '01-Team/team.md'
+    language = frontmatter(profile)['working_language']
+    error(profile, 'working_language must be a non-empty language code or name') unless present?(language)
 
-    %w[3-Projects 4-Knowledge].each { |directory| check_index(ROOT / directory) }
-    error(owners, 'przypisz opiekuna steward przed dodaniem stron') if @pages.any? && @steward.nil?
+    %w[02-Knowledge 03-Projects].each { |directory| check_index(ROOT / directory) }
+    error(owners, 'assign a steward before adding pages') if @pages.any? && @steward.nil?
     check_successors
     ROOT.glob('**/*.md', File::FNM_DOTMATCH).sort.each do |file|
       next if relative(file).split('/').any? { |part| %w[.git .claude .venv].include?(part) }
@@ -31,9 +34,9 @@ class KnowledgeCheck
       check_links(file)
     end
 
-    @warnings.each { |warning| puts "UWAGA: #{warning}" }
-    @errors.each { |error| warn "BŁĄD: #{error}" }
-    puts "#{@pages.size} stron, #{@errors.size} błędów, #{@warnings.size} uwag."
+    @warnings.each { |warning| puts "WARNING: #{warning}" }
+    @errors.each { |error| warn "ERROR: #{error}" }
+    puts "#{@pages.size} pages, #{@errors.size} errors, #{@warnings.size} warnings."
     @errors.empty?
   end
 
@@ -52,10 +55,10 @@ class KnowledgeCheck
     data = YAML.safe_load(block[1], permitted_classes: [Date]) if block
     return data if data.is_a?(Hash)
 
-    error(file, 'brak mapy metadanych YAML')
+    error(file, 'missing YAML metadata mapping')
     {}
   rescue Psych::Exception => e
-    error(file, "nieprawidłowe YAML: #{e.message}")
+    error(file, "invalid YAML: #{e.message}")
     {}
   end
 
@@ -74,17 +77,17 @@ class KnowledgeCheck
     @areas = data['areas']
     @steward = data['steward']
     unless data.key?('steward') && (@steward.nil? || present?(@steward))
-      error(file, 'steward wymaga nazwy opiekuna lub null w pustym szablonie')
+      error(file, 'steward must name a person or be null in an empty template')
     end
     unless @areas.is_a?(Hash) && !@areas.empty?
-      error(file, 'brak mapy areas')
+      error(file, 'missing areas mapping')
       @areas = {}
     end
     @areas.each do |area, people|
       complete = people.is_a?(Hash) && %w[owner backup].all? do |role|
         people.key?(role) && (people[role].nil? || present?(people[role]))
       end
-      error(file, "obszar #{area} wymaga pól owner i backup") unless complete
+      error(file, "area #{area} requires owner and backup fields") unless complete
     end
   end
 
@@ -92,13 +95,13 @@ class KnowledgeCheck
     index = directory / 'index.md'
     pages = directory.glob('**/*.md').sort - [index]
     unless index.file?
-      error(index, 'brak indeksu')
+      error(index, 'missing index')
       return
     end
     indexed = links(index).map { |ref| local_target(index, ref) }
     pages.each do |page|
       count = indexed.count(page)
-      error(index, "oczekiwano jednego wpisu dla #{relative(page)}, jest #{count}") if count != 1
+      error(index, "expected one index entry for #{relative(page)}, found #{count}") if count != 1
       check_page(page)
     end
   end
@@ -108,44 +111,44 @@ class KnowledgeCheck
     @pages[file] = data
     id = data['id']
     if !id.is_a?(String) || !id.match?(/\A[a-z0-9]+(?:-[a-z0-9]+)*\z/)
-      error(file, 'nieprawidłowe id')
+      error(file, 'invalid id')
     elsif @ids.key?(id)
-      error(file, "id #{id} występuje też w #{relative(@ids[id])}")
+      error(file, "id #{id} also appears in #{relative(@ids[id])}")
     else
       @ids[id] = file
     end
 
-    error(file, 'nieznany type') unless TYPES.include?(data['type'])
+    error(file, 'unknown type') unless TYPES.include?(data['type'])
     status = data['status']
-    error(file, 'nieznany status') unless STATUSES.include?(status)
+    error(file, 'unknown status') unless STATUSES.include?(status)
 
     check_owner(file, data)
     reviewed = data['reviewed_at']
     pending = data.key?('reviewed_at') && reviewed.nil? && status == 'needs_review'
-    error(file, 'nieprawidłowe reviewed_at') unless pending || valid_date?(reviewed)
+    error(file, 'invalid reviewed_at') unless pending || valid_date?(reviewed)
     if data.key?('next_review_at')
       due = data['next_review_at']
       if !valid_date?(due)
-        error(file, 'nieprawidłowe next_review_at')
+        error(file, 'invalid next_review_at')
       elsif Date.iso8601(due) < Date.today && %w[active needs_review].include?(status)
-        @warnings << "#{relative(file)}: termin przeglądu minął (#{due})."
+        @warnings << "#{relative(file)}: review is overdue (#{due})."
       end
     end
     check_sources(file, data['sources'])
   end
 
   def check_owner(file, data)
-    error(file, 'nieprawidłowe owner') if data.key?('owner') && !present?(data['owner'])
+    error(file, 'invalid owner') if data.key?('owner') && !present?(data['owner'])
     people = @areas[data['area']]
     unless people.is_a?(Hash)
-      error(file, "nieznany obszar #{data['area'].inspect}")
+      error(file, "unknown area #{data['area'].inspect}")
       return
     end
     if present?(people['owner']) && present?(people['backup']) && people['owner'] != people['backup']
       return
     end
 
-    message = "obszar #{data['area']} wymaga właściciela i odrębnego zastępcy"
+    message = "area #{data['area']} requires an owner and a different backup"
     if data['status'] == 'active'
       error(file, message)
     elsif data['status'] == 'needs_review'
@@ -155,12 +158,12 @@ class KnowledgeCheck
 
   def check_sources(file, sources)
     unless sources.is_a?(Array) && !sources.empty?
-      error(file, 'sources wymaga co najmniej jednego źródła')
+      error(file, 'sources requires at least one source')
       return
     end
     sources.each do |source|
       unless source.is_a?(Hash) && present?(source['ref'])
-        error(file, 'źródło wymaga ref i access')
+        error(file, 'source requires ref and access')
         next
       end
 
@@ -168,12 +171,12 @@ class KnowledgeCheck
       case source['access']
       when 'team', 'restricted'
         target = local_target(file, ref)
-        error(file, "brak wspólnego pliku źródła #{ref}") unless target && inside?(target) && target.file?
+        error(file, "shared source file not found #{ref}") unless target && inside?(target) && target.file?
       when 'external'
         uri = parse_uri(ref)
-        error(file, "oczekiwano adresu HTTPS w źródle #{ref}") unless uri&.scheme == 'https' && uri.host
+        error(file, "expected an HTTPS source URL #{ref}") unless uri&.scheme == 'https' && uri.host
       else
-        error(file, "nieznany access dla źródła #{ref}")
+        error(file, "unknown source access #{ref}")
       end
     end
   end
@@ -184,11 +187,11 @@ class KnowledgeCheck
 
       successor = @ids[data['superseded_by']]
       if data['status'] != 'superseded' || !successor || successor == file
-        error(file, 'superseded_by wymaga statusu superseded i ID innej strony')
+        error(file, 'superseded_by requires superseded status and another page ID')
         next
       end
       unless links(file).any? { |ref| local_target(file, ref) == successor }
-        error(file, 'brak odnośnika do następcy w treści')
+        error(file, 'missing successor link in the body')
       end
 
       visited = [file]
@@ -196,7 +199,7 @@ class KnowledgeCheck
         visited << successor
         successor = @ids[@pages[successor]['superseded_by']]
       end
-      error(file, 'cykl odnośników superseded_by') if successor
+      error(file, 'cycle in superseded_by links') if successor
     end
   end
 
@@ -242,7 +245,7 @@ class KnowledgeCheck
   def check_links(file)
     links(file).each do |ref|
       target = local_target(file, ref)
-      error(file, "uszkodzony link #{ref}") if target && !inside?(target)
+      error(file, "broken link #{ref}") if target && !inside?(target)
     end
   end
 end

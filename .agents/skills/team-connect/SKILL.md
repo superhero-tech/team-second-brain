@@ -1,10 +1,10 @@
 ---
 name: team-connect
-description: Uruchom w klonie zespołu, aby podłączyć wskazane prywatne repo, zainstalować w nim team-share i dopisać reguły do AGENTS.md.
+description: Run in a team clone to connect a private Super Brain, install or update team-share, and add context-reading rules to its agent instructions.
 ---
-# Podłącz prywatnego Superbraina
+# Connect a private brain
 
-1. Użyj bieżącego klonu jako repo zespołu. Ustal ścieżkę do prywatnego repo, w razie potrzeby poproś o nią użytkownika. Sprawdź, czy to osobny katalog główny i czy sesja ma do niego zapis. Potwierdź `origin`, status `verified` i odczyt `8-System/context-entry.md` według [procedury Git](../../../8-System/git-read.md). Przy braku dostępu podaj, którego katalogu lub repo dotyczy problem.
-2. W prywatnym `8-System/team-context.md` dodaj albo uaktualnij wpis tego zespołu według [szablonu](../../../6-Templates/team-context.md). Tożsamość i ścieżkę klonu odczytaj z repo zespołu. Zakres weź z jego profilu i polecenia użytkownika. Zachowaj pozostałe połączenia.
-3. Skopiuj [team-share](../../../6-Templates/private-skills/team-share/SKILL.md) do `.agents/skills/team-share/SKILL.md` w prywatnym repo. Przy ponownym podłączeniu zaktualizuj także zainstalowany skill; zachowaj lokalne dostosowania, a konflikt z nowym przepływem wyjaśnij z użytkownikiem. Dla Claude Code dodaj względny symlink `.claude/skills/team-share`. Zastosuj [regułę z instrukcji](../../../docs/instalacja-w-prywatnym-repo.md) w prywatnym `AGENTS.md` oraz w istniejącym `CLAUDE.md`, jeśli ten plik jest utrzymywany samodzielnie. Przy ponownym uruchomieniu zaktualizuj istniejący wpis. Zachowaj treść pozostałych instrukcji.
-4. Sprawdź połączenie na pytaniu wymagającym źródła zespołu przez [team-query](../team-query/SKILL.md). Pokaż źródło, SHA i listę zmienionych prywatnych plików.
+1. Use the current clone as the team repository. Obtain the private repository's path if missing; confirm it is a separate repository root and writable. Verify `origin`, a `verified` SHA and `01-Team/context-entry.md` using [Git reads](../../../docs/git-read.md). Report the specific inaccessible repository or directory.
+2. Add or update this team's entry in the private `8-System/team-context.md` using the [connection template](../../../05-Templates/team-context.md). Read identity and clone path from the team repository, and scope from its profile and the user's request. Preserve other connections. The private `8-System/` path is intentional; do not rename private folders to match the team layout.
+3. Install or update [team-share](../../../05-Templates/private-skills/team-share/SKILL.md) at the private `.agents/skills/team-share/SKILL.md`, preserving local customizations; resolve incompatible customizations with the user. Add the relative `.claude/skills/team-share` symlink for Claude Code. Apply the [private instruction block](../../../docs/private-connection.md) in `AGENTS.md` and an independently maintained `CLAUDE.md`. Preserve unrelated instructions.
+4. Verify the connection using [team-query](../team-query/SKILL.md) on a question grounded in an accepted team source. An initialized profile is enough when the knowledge index is empty. Report the source, SHA and private files changed. Connecting does not publish private material.

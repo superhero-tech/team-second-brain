@@ -1,17 +1,17 @@
-## Zmiana i uzasadnienie
+## Change and purpose
 
-Co zmieniamy w przyjętej wiedzy i jak pomoże to następnej osobie?
+What changed, and how will it help someone make a decision or do work?
 
-## Podstawa i ograniczenia
+## Evidence and limits
 
-Udostępnione źródła, obserwacje, otwarte pytania i zakres wniosków. Jeśli zapisujemy decyzję, wskaż kto i kiedy ją podjął.
+Shared sources, observations, open questions and scope of conclusions. For a decision, identify who made it and when.
 
-## Zmienione strony i review
+## Pages and review
 
-- Dotknięte strony, indeksy i odnośniki
-- Właściciel lub zastępca wyznaczony do review
-- Powiązane Issue i sprawy do rozstrzygnięcia
+- Affected pages, indexes and links
+- Owner or backup responsible for review
+- Related Issues and unresolved questions
 
-- [ ] Autor sprawdził pełny zakres treści zespołowej, w tym źródła i opis PR-a.
-- [ ] Przy wejściu prywatnym autor zaakceptował zakres przed publikacją gałęzi.
-- [ ] Reviewer sprawdził podstawę twierdzeń, ograniczenia i wpływ na inne strony.
+- [ ] Author checked the full shared scope, including sources and PR text.
+- [ ] For private input, the author approved disclosure before the branch was published (or not applicable).
+- [ ] Reviewer assessed the evidence, limits and effect on other pages.

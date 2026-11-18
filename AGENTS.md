@@ -1,7 +1,8 @@
-# Superbrain zespołowy
+# Team Second Brain
 
-- Przeczytaj [zasady repo](8-System/brain.md) i [mapę kontekstu](8-System/context-entry.md). Przy pierwszym użyciu sprawdź [profil zespołu](8-System/team.md).
-- Odpowiedzi o przyjętej wiedzy oprzyj na sprawdzonym commicie domyślnej gałęzi zespołu. Zastosuj [team-query](.agents/skills/team-query/SKILL.md), również przy braku aktualnego dostępu lub sprzeczności.
-- Zmiany przyjętej wiedzy, zasad i skilli przechodzą przez PR i review drugiej osoby. Przed edycją wiedzy przeczytaj [team-update](.agents/skills/team-update/SKILL.md).
-- Do przeglądu, kolejki maintenance i wybranych napraw użyj [team-garden](.agents/skills/team-garden/SKILL.md). Pełna lista skilli jest w [7-Skills](7-Skills/README.md).
-- Przed edycją przeczytaj indeks obszaru, a po edycji popraw jego wpisy i dotknięte odnośniki. Przed oddaniem zmian uruchom `ruby scripts/check.rb`.
+- Read [working agreements](docs/working-agreements.md), the [context map](01-Team/context-entry.md) and [team profile](01-Team/team.md). Use `working_language` for new team content; follow the user's language in conversation.
+- For a new team's setup, use [team-init](.agents/skills/team-init/SKILL.md). Do not invent product facts or people.
+- Ground accepted knowledge in a verified commit of the team's default branch. Use [team-query](.agents/skills/team-query/SKILL.md), including when access is unavailable or evidence conflicts.
+- Changes to knowledge, rules and skills go through a branch and a GitHub Draft PR via [team-update](.agents/skills/team-update/SKILL.md). Human review and merge establish the accepted version.
+- Use [team-garden](.agents/skills/team-garden/SKILL.md) for maintenance findings and selected repairs.
+- Before editing, read the relevant index; update affected links and indexes. Run `ruby scripts/check.rb`. When changing the checker, also run `ruby scripts/check_test.rb`.

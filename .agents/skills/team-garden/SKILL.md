@@ -1,15 +1,15 @@
 ---
 name: team-garden
-description: Zrób przegląd utrzymania zespołowego Superbraina albo przygotuj wybraną naprawę sprzeczności, duplikatu, braku właściciela lub innego problemu z wiedzą.
+description: Review team knowledge for contradictions, duplicates, stale claims, missing owners or evidence gaps, and route selected repairs through PRs.
 ---
-# Gardening
+# Maintain shared knowledge
 
-## Przegląd
+## Review
 
-- Ustal zakres i [wersję](../../../8-System/git-read.md). Za pomocą `ruby scripts/check.rb` sprawdź kopię tej wersji. Sprawdź dostępność źródeł, sprzeczności, duplikaty, braki właścicieli, luki i potrzebę przeglądu. Sprawdź syntezy zakończonych projektów i [kolejkę utrzymania](../../../8-System/maintenance.md). Przy braku dostępu do Issues lub PR-ów nazwij pominięty zakres.
-- Podaj problemy według wpływu, z dowodem, działaniem i [osobą do rozstrzygnięcia](../../../8-System/owners.md). Brak właściciela przekaż opiekunowi. Raport zostaw w rozmowie, chyba że użytkownik zleci zapis.
+- Establish scope and [revision](../../../docs/git-read.md). Run `ruby scripts/check.rb` on a copy of that revision. Check sources, contradictions, duplicates, ownership, review needs, completed-project summaries and the [maintenance queue](../../../docs/maintenance.md). State any unavailable Issue or PR coverage.
+- Rank findings by impact. For each, provide evidence, a proposed action and an [owner](../../../01-Team/owners.md); send missing assignments to the steward. Keep the report in conversation unless asked to save it.
 
-## Wybrana naprawa
+## Selected repair
 
-- Sprzeczne ustalenia skieruj do właściciela z obiema podstawami. Przy duplikacie zaproponuj następcę, zachowując unikalną treść. Uzgodnioną naprawę przygotuj przez [team-update](../team-update/SKILL.md).
-- Przy upoważnieniu do zgłoszenia sprawdź istniejące Issues i użyj [szablonu](../../../.github/ISSUE_TEMPLATE/utrzymanie-wiedzy.md).
+- Send conflicting claims and their evidence to the owner for resolution. For duplicates, propose a successor while preserving unique content. Deliver the agreed repair through [team-update](../team-update/SKILL.md).
+- When authorized to file an Issue, check for an existing one and use the [maintenance template](../../../.github/ISSUE_TEMPLATE/knowledge-maintenance.md).

@@ -1,3 +1,3 @@
-# Superbrain zespołowy
+# Team Second Brain
 
 @AGENTS.md
