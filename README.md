@@ -11,7 +11,7 @@ It works on its own or alongside a [private Super Brain](https://github.com/supe
 ## Start with an empty brain
 
 1. Choose **Use this template → Create a new repository** on GitHub. Choose visibility appropriate for your team's knowledge.
-2. Clone your new repository, then open its root in Codex or Claude Code.
+2. Clone your new repository, run the configuration check below, then open the repository root in Codex or Claude Code.
 3. Run `$team-init` in Codex or `/team-init` in Claude Code. Provide your product, team scope, working language, steward, and owners and backups for the areas the team uses. Reviewers are selected for each PR based on its scope and author.
 4. The agent prepares the configuration and opens a Draft PR. Review it, then explicitly ask to mark it ready and merge after the required review. Configure repository access and protection using [GitHub setup](docs/github-setup.md).
 5. Share a source or a recent decision with `team-update`. This becomes your first knowledge contribution.
@@ -19,11 +19,16 @@ It works on its own or alongside a [private Super Brain](https://github.com/supe
 ```sh
 git clone https://github.com/YOUR-ACCOUNT/YOUR-TEAM-BRAIN.git
 cd YOUR-TEAM-BRAIN
+python3 scripts/doctor.py
 ```
 
 The template includes structure and workflows, not sample company knowledge. Template instructions are in English. `working_language` in [the team profile](01-Team/team.md) controls the language of new team content; conversations can follow the user's language.
 
-You need Git, Python 3 and Ruby for the included checks, plus access to GitHub to publish branches and PRs. An editor or Obsidian can open the same folder; neither is required for the workflows.
+You need Git, Python 3 and Ruby for the included checks, plus access to GitHub to publish branches and PRs. `doctor` checks the skill files, runs the local knowledge check and verifies the accepted revision on `origin`. If `gh` is available, it also reports the CLI account's repository role for a GitHub.com origin.
+
+Exit code 1 means a required check failed. Warnings point to optional or pending setup and do not change the exit code. On a fresh template, a warning about the example `CODEOWNERS` is expected until setup. The command can fetch Git objects without changing the working tree or pushing changes. The reported GitHub role describes the CLI account. Use [GitHub setup](docs/github-setup.md) to verify actual review enforcement.
+
+An editor or Obsidian can open the same folder; neither is required for the workflows.
 
 ## What belongs here
 
