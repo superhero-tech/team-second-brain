@@ -26,7 +26,7 @@ The template includes structure and workflows, not sample company knowledge. Tem
 
 You need Git, Python 3 and Ruby for the included checks, plus access to GitHub to publish branches and PRs. `doctor` checks the skill files, runs the local knowledge check and verifies the accepted revision on `origin`. If `gh` is available, it also reports the CLI account's repository role for a GitHub.com origin.
 
-Exit code 1 means a required check failed. Warnings point to optional or pending setup and do not change the exit code. On a fresh template, a warning about the example `CODEOWNERS` is expected until setup. The command can fetch Git objects without changing the working tree or pushing changes. The reported GitHub role describes the CLI account. Use [GitHub setup](docs/github-setup.md) to verify actual review enforcement.
+The report gives separate verdicts for local configuration and repository access. Exit code 1 means there is a confirmed issue to fix. An unavailable network or unverified GitHub role is reported separately and does not fail the local setup check. On a fresh template, the note about `CODEOWNERS` is expected. The command can fetch Git objects without changing the working tree or pushing changes. Use [GitHub setup](docs/github-setup.md) to verify live review enforcement.
 
 An editor or Obsidian can open the same folder; neither is required for the workflows.
 
@@ -50,6 +50,7 @@ Use these names directly or describe the work you want done. In Codex, invoke a 
 
 | Skill | When to use it | Result |
 | --- | --- | --- |
+| [team-doctor](.agents/skills/team-doctor/SKILL.md) | You want to check your clone or understand a setup problem | Separate verdicts for local setup and repository access, with next steps |
 | [team-init](.agents/skills/team-init/SKILL.md) | You have just created a team repository | Team profile, ownership and starting context in a Draft PR |
 | [team-query](.agents/skills/team-query/SKILL.md) | You need an answer grounded in team knowledge | An answer with sources, the accepted commit and explicit gaps |
 | [team-update](.agents/skills/team-update/SKILL.md) | Research, an experiment or a decision changes what the team knows | Updated pages, evidence and indexes in a GitHub Draft PR |

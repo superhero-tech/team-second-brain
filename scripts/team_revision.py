@@ -7,7 +7,7 @@ import re
 import subprocess
 
 
-def git(repo, *args):
+def git(repo, *args, on_error=None):
     try:
         result = subprocess.run(
             ["git", "-C", str(repo), *args],
@@ -17,19 +17,21 @@ def git(repo, *args):
             env={**os.environ, "GIT_TERMINAL_PROMPT": "0"},
             timeout=30,
         )
-    except (OSError, subprocess.SubprocessError):
+    except (OSError, subprocess.SubprocessError) as error:
+        if on_error is not None:
+            on_error(error)
         return None
     return result.stdout.strip()
 
 
-def revision(repo):
+def revision(repo, *, on_remote_error=None):
     root = git(repo, "rev-parse", "--show-toplevel")
     if not root or Path(root).resolve() != repo:
         return {"status": "unavailable", "reason": "not_clone_root"}
     if not git(repo, "remote", "get-url", "origin"):
         return {"status": "unavailable", "reason": "no_origin"}
 
-    advertised = git(repo, "ls-remote", "--symref", "origin", "HEAD") or ""
+    advertised = git(repo, "ls-remote", "--symref", "origin", "HEAD", on_error=on_remote_error) or ""
     branch = re.search(r"^ref: (refs/heads/[^\s]+)\s+HEAD$", advertised, re.MULTILINE)
     head = re.search(r"^([0-9a-f]{40}|[0-9a-f]{64})\s+HEAD$", advertised, re.MULTILINE)
     reason = "origin_head_not_verified"
@@ -37,7 +39,8 @@ def revision(repo):
         sha = head[1]
         if git(repo, "cat-file", "-e", f"{sha}^{{commit}}") is None:
             git(repo, "fetch", "--no-write-fetch-head", "--no-tags",
-                "--no-recurse-submodules", "--no-auto-maintenance", "origin", sha)
+                "--no-recurse-submodules", "--no-auto-maintenance", "origin", sha,
+                on_error=on_remote_error)
         if git(repo, "cat-file", "-e", f"{sha}^{{commit}}") is not None:
             return {"status": "verified", "ref": branch[1], "sha": sha}
         reason = "commit_unavailable"
