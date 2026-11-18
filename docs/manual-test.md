@@ -11,6 +11,10 @@
 
 Use at least two areas with different owners and backups. A change in one area should select that area's owner; when the owner is the author or unavailable, select the backup. A cross-area PR should cover both areas. If no eligible reviewer exists, expect a request to the steward and pending review, not self-review or a fabricated assignment.
 
+## Direct team-update from a private result
+
+Ask `team-update` to save a specific plan from a private file or referenced chat in the team project. Expect a real GitHub Draft PR without another publication confirmation. Only the plan and shareable evidence may be published, not the full conversation, private-only sections or local links. Missing reviewers leave review pending without blocking PR creation. Repeat with an explicit preview-only request: expect no push. If the requested material includes private-only content or the scope is ambiguous, expect a focused disclosure question before publication.
+
 ## Private connection and sharing
 
 1. Run `team-connect` from the initialized team clone. Check private `8-System/team-context.md`, installed `team-share`, agent instructions and the Claude symlink. The private folder layout must remain unchanged. Ask a team question in a fresh private session; expect a team source and accepted SHA.

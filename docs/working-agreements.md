@@ -10,7 +10,7 @@ Cite the pages and revision used. Distinguish observations, hypotheses, decision
 
 ## Changes and review
 
-Use [team-update](../.agents/skills/team-update/SKILL.md) to deliver requested changes on a team branch in a GitHub Draft PR, unless the user explicitly asks for a plan, preview or local-only work. Include affected indexes, sources and links. Private material requires approval of the exact publication scope before any push.
+Use [team-update](../.agents/skills/team-update/SKILL.md) to deliver requested changes on a team branch in a GitHub Draft PR, unless the user explicitly asks for a plan, preview or local-only work. Include affected indexes, sources and links. A direct request to save identified private material in the team repository authorizes publishing that material. Follow [private sharing](../.agents/skills/team-update/references/private-sharing.md) for unresolved disclosure scope or a requested preview; do not ask again solely because the source is private.
 
 The author is responsible for disclosure; the area's owner is responsible for content. The [backup or steward](../01-Team/owners.md) resolves reviewer assignment. A person other than the author reviews the evidence. Passing checks is necessary, but does not establish truth or replace review.
 
