@@ -12,7 +12,7 @@ It works on its own or alongside a [private Super Brain](https://github.com/supe
 
 1. Choose **Use this template → Create a new repository** on GitHub. Choose visibility appropriate for your team's knowledge.
 2. Clone your new repository, then open its root in Codex or Claude Code.
-3. Run `$team-init` in Codex or `/team-init` in Claude Code. Provide your product, team scope, working language and the people responsible for maintaining and reviewing knowledge.
+3. Run `$team-init` in Codex or `/team-init` in Claude Code. Provide your product, team scope, working language, steward, and owners and backups for the areas the team uses. Reviewers are selected for each PR based on its scope and author.
 4. The agent prepares the configuration and opens a Draft PR. Review it, then explicitly ask to mark it ready and merge after the required review. Configure repository access and protection using [GitHub setup](docs/github-setup.md).
 5. Share a source or a recent decision with `team-update`. This becomes your first knowledge contribution.
 

@@ -4,8 +4,12 @@
 
 1. Run `ruby scripts/check.rb` and `ruby scripts/check_test.rb`. An empty template should report 0 pages, 0 errors and 0 warnings.
 2. Open a fresh session in a clone created from the template. Confirm `team-init`, `team-query`, `team-update`, `team-garden` and `team-connect` are discoverable in Codex and through Claude Code symlinks.
-3. Run `team-init` with a product, audience, scope, working language and real steward/reviewer logins. Expect a setup Draft PR with no invented knowledge, no default-branch write and no automatic permission changes. Rerun without new input: no duplicate or empty PR should appear.
+3. Run `team-init` with a product, audience, scope, working language and real logins for the steward and each area's owner and backup. Expect a setup Draft PR with no invented knowledge, no default-branch write and no automatic permission changes. For the first setup, expect a proposed reviewer assignment based on the new ownership map and confirmation from the user, not a permanent reviewer setting. Rerun without new input: no duplicate or empty PR should appear.
 4. Review and merge the setup; verify [GitHub review](github-setup.md) in a disposable repository. Create one sourced page through `team-update`; expect an actual Draft PR and a successful check. Mark it ready when instructed. Missing human review should still prevent merge when protection is enabled.
+
+## Reviewer selection
+
+Use at least two areas with different owners and backups. A change in one area should select that area's owner; when the owner is the author or unavailable, select the backup. A cross-area PR should cover both areas. If no eligible reviewer exists, expect a request to the steward and pending review, not self-review or a fabricated assignment.
 
 ## Private connection and sharing
 

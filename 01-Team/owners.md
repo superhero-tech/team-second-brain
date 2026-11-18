@@ -25,4 +25,4 @@ Assign a `steward` before adding knowledge or project pages. For each area in us
 | `research` | Customer knowledge and research practices |
 | `maintenance` | Repository instructions and skills |
 
-The backup reviews when the owner authored the change or is unavailable. The steward resolves missing assignments. A page can name its own `owner`; the area's backup still applies. Adapt the areas to the actual team.
+The backup reviews when the owner authored the change or is unavailable. The steward resolves missing assignments. A page can name its own `owner`; the area's backup still applies. Adapt the areas to the actual team. Reviewer is a role on a specific PR, not a permanent repository-wide assignment; a change spanning several areas needs review coverage for those areas.
