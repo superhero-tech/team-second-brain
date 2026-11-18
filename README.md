@@ -54,6 +54,7 @@ Use these names directly or describe the work you want done. In Codex, invoke a 
 | [team-init](.agents/skills/team-init/SKILL.md) | You have just created a team repository | Team profile, ownership and starting context in a Draft PR |
 | [team-query](.agents/skills/team-query/SKILL.md) | You need an answer grounded in team knowledge | An answer with sources, the accepted commit and explicit gaps |
 | [team-update](.agents/skills/team-update/SKILL.md) | Research, an experiment or a decision changes what the team knows | Updated pages, evidence and indexes in a GitHub Draft PR |
+| [capture-meeting](.agents/skills/capture-meeting/SKILL.md) | A meeting produces decisions, open questions or changes to team knowledge | Select evidenced items first; `team-update` records them in one Draft PR |
 | [team-garden](.agents/skills/team-garden/SKILL.md) | You want to check what needs attention | Ranked findings with evidence and owners; selected repairs go through PRs |
 | [team-connect](.agents/skills/team-connect/SKILL.md) | You also use a private Super Brain | A private connection and an installed `team-share` skill |
 | [team-share](05-Templates/private-skills/team-share/SKILL.md) | A private note contains something useful to the team | A shareable version in a Draft PR, after you approve what leaves your private repo |
@@ -84,6 +85,7 @@ See [private connection](docs/private-connection.md) for installation, permissio
 
 - Before work, check existing decisions and evidence with `team-query`.
 - After an event changes knowledge, use `team-update` to record what changed and why.
+- After a meeting, run `$capture-meeting /path/to/notes.md` in Codex or `/capture-meeting /path/to/notes.md` in Claude Code, or paste the text. Select the proposed items before any write; only short evidence excerpts are shared.
 - At project closure, save the outcome and move reusable findings into knowledge pages.
 - Regularly run `team-garden` to find contradictions, stale claims, duplicates and ownership gaps. Resolve the highest-impact findings with the people responsible.
 

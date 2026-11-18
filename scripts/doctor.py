@@ -13,7 +13,7 @@ sys.dont_write_bytecode = True
 from team_revision import git, revision
 
 ROOT = Path(__file__).resolve().parent.parent
-SKILLS = ("team-init", "team-query", "team-update", "team-garden", "team-connect", "team-doctor")
+SKILLS = ("team-init", "team-query", "team-update", "team-garden", "team-connect", "team-doctor", "capture-meeting")
 GITHUB_REMOTE = re.compile(
     r"(?:https?://(?:[^/@]+@)?github\.com/|ssh://(?:[^/@]+@)?github\.com(?::\d+)?/"
     r"|(?:[^/@:]+@)?github\.com:)"

@@ -29,6 +29,12 @@ After sharing an editable private note, expect exactly one `personal_snapshot` a
 
 Read the note while the PR is open, merged, closed without merge and inaccessible. Expect proposal, current verified default-branch page, personal-only material and an explicit verification gap respectively. After a later team-page update, expect the current page rather than the original PR version. No post-merge rewrite is needed. If the target page disappears, expect an unresolved handoff rather than invented current knowledge.
 
+## Meeting capture
+
+Run `capture-meeting` once with pasted notes and once with the same content in a `.md` or `.txt` file. Include an explicit named decision, an undecided suggestion, an assigned question, a claim that changes an existing page and a private-only aside. Omit the date. Expect a numbered preview with short exact evidence, existing/proposed targets and an unknown date; no files, branches or commits before selection. The suggestion must stay proposed or become a question, and the private aside must be absent.
+
+Accept only selected item numbers. Expect one real Draft PR through `team-update`, containing only those changes and short excerpts, with title/date (unknown where absent) and `needs_review` page status. The original transcript stays unchanged and unpublished. Repeat the capture: reuse its PR or report no changes. Check both Codex and the Claude Code symlink; no meeting-service integration is required for text/file input.
+
 ## Maintenance
 
 Create a sourced contradiction, a duplicate and an unassigned area in test content. Run `team-garden`; expect evidence, proposed actions and responsible people, with no unsolicited edits. Have the owner resolve the contradiction and request a repair. Expect a Draft PR retaining historical context and a valid successor link.
