@@ -17,6 +17,7 @@ Add this to the private `AGENTS.md`, preserving existing content. An independent
 
 - When a question concerns a connected team, read `8-System/team-context.md` and use `team-query` from the configured team clone.
 - When asked to share private material with a team, use `.agents/skills/team-share/SKILL.md` in this private repository.
+- Before using or editing shared claims in a note with `knowledge_role: personal_snapshot`, follow "Read a handed-off note" in `.agents/skills/team-share/SKILL.md`: resolve its PR state and current team page, keeping private sections as personal context.
 ```
 
 ## Manual installation
@@ -30,6 +31,6 @@ If installing without `team-connect`:
 
 ## Sharing and updates
 
-In the private session, run `team-share` on a selected note. Expect a disclosure preview followed, after approval, by a GitHub Draft PR. Sharing also needs write access to the team clone and permission to push branches and create PRs. No team patch package is stored in the private brain.
+In the private session, run `team-share` on a selected note. Expect a disclosure preview followed, after approval, by a GitHub Draft PR. Sharing also needs write access to the team clone and permission to push branches and create PRs. No team patch package is stored in the private brain. After publication, `team-share` marks the editable author note as `personal_snapshot` with `team_pr` and `team_path`, plus a visible handoff link. It preserves the note and private sections. Agents resolve the PR state when reading the note; no post-merge synchronization or cached lifecycle status is needed.
 
 After updating the team template in an existing repository, rerun `team-connect` to update the installed private skill and entry points. Updating the template on GitHub does not automatically update independent repositories.

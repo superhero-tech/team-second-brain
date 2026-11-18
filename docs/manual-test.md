@@ -19,6 +19,12 @@ Use at least two areas with different owners and backups. A change in one area s
 4. After review and merge, ask from a second clone with no private access. Expect the accepted finding, source and merged SHA. While the PR is open, its content must remain a proposal.
 5. Rerun `team-connect` with an older installed skill. Confirm updated entry points and sharing workflow while preserving other connections and local customizations.
 
+## Private handoff
+
+After sharing an editable private note, expect exactly one `personal_snapshot` annotation with the actual PR URL, primary team-page path and a readable link. The original content, private sections and unrelated metadata remain intact; the annotation is absent from the published contribution. A preview or failed publication must not create this annotation. Retrying after a private-write failure must reuse the existing PR.
+
+Read the note while the PR is open, merged, closed without merge and inaccessible. Expect proposal, current verified default-branch page, personal-only material and an explicit verification gap respectively. After a later team-page update, expect the current page rather than the original PR version. No post-merge rewrite is needed. If the target page disappears, expect an unresolved handoff rather than invented current knowledge.
+
 ## Maintenance
 
 Create a sourced contradiction, a duplicate and an unassigned area in test content. Run `team-garden`; expect evidence, proposed actions and responsible people, with no unsolicited edits. Have the owner resolve the contradiction and request a repair. Expect a Draft PR retaining historical context and a valid successor link.

@@ -58,7 +58,7 @@ Use these names directly or describe the work you want done. In Codex, invoke a 
 | [team-connect](.agents/skills/team-connect/SKILL.md) | You also use a private Super Brain | A private connection and an installed `team-share` skill |
 | [team-share](05-Templates/private-skills/team-share/SKILL.md) | A private note contains something useful to the team | A shareable version in a Draft PR, after you approve what leaves your private repo |
 
-`team-share` runs from the private brain after connection. It continues through the team's `team-update` workflow in the same session. There is no patch package to carry between repositories.
+`team-share` runs from the private brain after connection. It continues through the team's `team-update` workflow in the same session. There is no patch package to carry between repositories. After publication, it links the private author note to the PR as a personal snapshot. On later reads, the agent resolves that PR and uses the current team page after merge; private working notes remain local.
 
 ## Try one complete loop
 
